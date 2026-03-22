@@ -1,13 +1,17 @@
 import { BarChart3, Home, Users, Settings, FileText, Calendar } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router';
 
 export function Sidebar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const menuItems = [
-    { icon: Home, label: 'Overview', active: true },
-    { icon: BarChart3, label: 'Analytics', active: false },
-    { icon: Users, label: 'Team', active: false },
-    { icon: FileText, label: 'Documents', active: false },
-    { icon: Calendar, label: 'Calendar', active: false },
-    { icon: Settings, label: 'Settings', active: false },
+    { icon: Home, label: 'Overview', path: '/' },
+    { icon: BarChart3, label: 'Analytics', path: '#' },
+    { icon: Users, label: 'Team', path: '#' },
+    { icon: FileText, label: 'Documents', path: '/documents' },
+    { icon: Calendar, label: 'Calendar', path: '#' },
+    { icon: Settings, label: 'Settings', path: '#' },
   ];
 
   return (
@@ -15,11 +19,17 @@ export function Sidebar() {
       <nav className="p-4 space-y-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
+          const isActive = item.path !== '#' && location.pathname === item.path;
           return (
             <button
               key={item.label}
+              onClick={() => {
+                if (item.path !== '#') {
+                  navigate(item.path);
+                }
+              }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                item.active
+                isActive
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
