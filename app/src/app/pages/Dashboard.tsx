@@ -44,6 +44,13 @@ export function Dashboard() {
               icon={TrendingUp}
               trend="up"
             />
+            <SummaryCard
+              title="Traffic-test"
+              value="1,234"
+              change="+10.1% from last month"
+              icon={TrendingUp}
+              trend="up"
+            />
           </div>
           
           {/* Action Button */}
