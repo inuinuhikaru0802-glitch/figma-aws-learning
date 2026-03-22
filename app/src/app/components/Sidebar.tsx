@@ -3,7 +3,7 @@ import { BarChart3, Home, Users, Settings, FileText, Calendar } from 'lucide-rea
 export function Sidebar() {
   const menuItems = [
     { icon: Home, label: 'Overview', active: true },
-    { icon: BarChart3, label: 'Analyticscscs', active: false },
+    { icon: BarChart3, label: 'Analytics', active: false },
     { icon: Users, label: 'Team', active: false },
     { icon: FileText, label: 'Documents', active: false },
     { icon: Calendar, label: 'Calendar', active: false },
