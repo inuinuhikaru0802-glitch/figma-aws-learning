@@ -12,7 +12,7 @@ export function AuthLoadingScreen({ message }: { message: string }) {
       <div className="w-full max-w-md rounded-3xl bg-white shadow-xl shadow-slate-200/80 border border-slate-200 p-8 text-center">
         <div className="mx-auto mb-5 h-12 w-12 rounded-full border-4 border-slate-200 border-t-blue-600 animate-spin" />
         <h1 className="text-xl font-semibold text-slate-900">{message}</h1>
-        <p className="mt-2 text-sm text-slate-600">Dashboard へのアクセス可否を確認しています。</p>
+        <p className="mt-2 text-sm text-slate-600">We are verifying whether you can access the dashboard.</p>
       </div>
     </div>
   );
@@ -23,7 +23,7 @@ export function UnauthenticatedScreen({
   error,
   notice,
   title = 'Dashboard',
-  description = 'この画面を利用するにはログインが必要です。',
+  description = 'You need to sign in to use this screen.',
 }: UnauthenticatedScreenProps) {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,#dbeafe,transparent_38%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)] flex items-center justify-center px-6 py-12">
@@ -36,7 +36,7 @@ export function UnauthenticatedScreen({
 
         {notice && <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{notice}</div>}
 
-        {error && <div className="mt-6 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">認証に失敗しました。{error}</div>}
+        {error && <div className="mt-6 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">Authentication failed. {error}</div>}
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
           <button
@@ -46,7 +46,7 @@ export function UnauthenticatedScreen({
           >
             Log in
           </button>
-          <p className="text-sm text-slate-500">ログイン後に Cognito からこの CloudFront URL へ戻り、Dashboard を表示します。</p>
+          <p className="text-sm text-slate-500">After signing in, Cognito will return to this CloudFront URL and show the dashboard.</p>
         </div>
       </div>
     </div>
