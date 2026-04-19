@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
+import { useAuth } from '../../auth/useAuth';
 
 type JsonRow = Record<string, unknown>;
 
@@ -44,6 +45,7 @@ function getDataUrl(): string | undefined {
 }
 
 export function Documents() {
+  const { accessToken } = useAuth();
   const [rows, setRows] = useState<JsonRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -66,6 +68,12 @@ export function Documents() {
       return;
     }
 
+    if (!accessToken) {
+      setError('Access token is not available. Please sign in again.');
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
@@ -74,6 +82,7 @@ export function Documents() {
         method: 'GET',
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -94,7 +103,7 @@ export function Documents() {
 
   useEffect(() => {
     fetchDocuments();
-  }, []);
+  }, [accessToken]);
 
   const handleFormChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({
@@ -110,6 +119,11 @@ export function Documents() {
 
     if (!url) {
       setSubmitError('VITE_DATA_URL is not set in .env');
+      return;
+    }
+
+    if (!accessToken) {
+      setSubmitError('Access token is not available. Please sign in again.');
       return;
     }
 
@@ -129,6 +143,7 @@ export function Documents() {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(payload),
       });
