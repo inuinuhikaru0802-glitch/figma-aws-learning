@@ -1,19 +1,36 @@
 import { createBrowserRouter } from 'react-router';
-import { Dashboard } from './pages/Dashboard';
 import { AddUser } from './pages/AddUser';
 import { Documents } from './pages/Documents';
+import { Home } from './pages/Home';
+import { ProtectedRoute } from '../auth/ProtectedRoute';
+
+function DocumentsRoute() {
+  return (
+    <ProtectedRoute>
+      <Documents />
+    </ProtectedRoute>
+  );
+}
+
+function AddUserRoute() {
+  return (
+    <ProtectedRoute>
+      <AddUser />
+    </ProtectedRoute>
+  );
+}
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: Dashboard,
+    Component: Home,
   },
   {
     path: '/documents',
-    Component: Documents,
+    Component: DocumentsRoute,
   },
   {
     path: '/add-user',
-    Component: AddUser,
+    Component: AddUserRoute,
   },
 ]);
