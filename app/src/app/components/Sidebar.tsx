@@ -1,4 +1,4 @@
-import { BarChart3, Home, Users, Settings, FileText, Calendar } from 'lucide-react';
+import { BarChart3, Home, Users, Settings, FileText, Calendar, Image } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router';
 
 export function Sidebar() {
@@ -10,6 +10,7 @@ export function Sidebar() {
     { icon: BarChart3, label: 'Analytics', path: '#' },
     { icon: Users, label: 'Team', path: '#' },
     { icon: FileText, label: 'Documents', path: '/documents' },
+    { icon: Image, label: 'Images', path: '/documents/images', nested: true },
     { icon: Calendar, label: 'Calendar', path: '#' },
     { icon: Settings, label: 'Settings', path: '#' },
   ];
@@ -28,7 +29,7 @@ export function Sidebar() {
                   navigate(item.path);
                 }
               }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${item.nested ? 'pl-9' : ''} ${
                 isActive
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
