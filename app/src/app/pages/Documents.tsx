@@ -143,7 +143,7 @@ export function Documents() {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${acceToken}`,
         },
         body: JSON.stringify(payload),
       });

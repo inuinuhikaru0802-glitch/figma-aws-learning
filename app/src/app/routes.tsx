@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import { AddUser } from './pages/AddUser';
 import { Documents } from './pages/Documents';
 import { Home } from './pages/Home';
+import { ImagesPage } from './pages/Images';
 import { ProtectedRoute } from '../auth/ProtectedRoute';
 
 function DocumentsRoute() {
@@ -20,6 +21,14 @@ function AddUserRoute() {
   );
 }
 
+function ImagesRoute() {
+  return (
+    <ProtectedRoute>
+      <ImagesPage />
+    </ProtectedRoute>
+  );
+}
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -32,5 +41,9 @@ export const router = createBrowserRouter([
   {
     path: '/add-user',
     Component: AddUserRoute,
+  },
+  {
+    path: '/documents/images',
+    Component: ImagesRoute,
   },
 ]);
